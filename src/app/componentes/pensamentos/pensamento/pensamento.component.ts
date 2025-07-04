@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import type { Pensamento } from './pensamento.model';
 
 @Component({
   selector: 'app-pensamento',
@@ -7,10 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './pensamento.component.css'
 })
 export class PensamentoComponent {
+  @Input({ required: true }) pensamento!: Pensamento;
 
-  @Input() pensamento = {
-    conteudo: 'I love Angular',
-    autoria: 'Nay',
-    modelo: 'modelo3'
+  larguraPensamento(): string {
+    if (this.pensamento.conteudo.length >= 256)
+      return 'pensamento-g';
+    return 'pensamento-p';
   }
 }
